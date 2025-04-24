@@ -1,8 +1,9 @@
-// Filename: Hero.jsx
+// component/Skills.jsx
+// Description: This component displays the technical expertise of the individual, organized into different areas with icons and details.
 import React from 'react';
 
 const Skills = () => {
-    // Data structure directly reflecting the README structure
+    // Technical expertise data
     const expertiseAreas = [
       {
         icon: "☁️",
@@ -41,25 +42,23 @@ const Skills = () => {
           { label: "API Development", details: "RESTful APIs, API Gateway" }
         ]
       }
-    ]; // Data matches the GitHub README provided
+    ]; 
 
     return (
-      <section id="expertise" className="py-16 bg-gray-50 dark:bg-gray-900"> {/* Changed background */}
+      <section id="expertise" className="py-16 bg-gray-50 dark:bg-gray-900"> 
         <div className="container max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-10 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-20 after:h-1 after:bg-primary"> {/* Use theme color */}
             Technical Expertise
           </h2>
-
-          {/* Using grid for layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 "> {/* Adjusted gap and columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 "> 
             {expertiseAreas.map((area, index) => (
               <div
                 key={index}
                 className="bg-white rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col dark:bg-gray-900 " // Added flex-col for better structure
               >
                 <div className="flex items-center mb-4">
-                  <span className="text-3xl mr-3">{area.icon}</span> {/* Adjusted icon size and margin */}
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white"> {/* Use theme color */}
+                  <span className="text-3xl mr-3">{area.icon}</span> 
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white"> 
                     {area.title}
                   </h3>
                 </div>

@@ -1,3 +1,5 @@
+// component/ThemeToggle.jsx
+// Description: This component serves as a theme toggle button, allowing users to switch between light and dark modes.
 import { Sun, Moon } from 'lucide-react';
 
 export default function ThemeToggle({ theme, toggleTheme }) {
