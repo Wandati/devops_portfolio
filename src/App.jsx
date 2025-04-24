@@ -11,7 +11,7 @@ import ProfessionalFocus from './components/ProfessionalFocus';
 import Resume from './components/Resume';
 function App() {
    // Basic check for 404 - Replace with proper routing later
-   const is404 = window.location.pathname !== '/' && !window.location.pathname.startsWith('/#'); // Simple check, adjust if needed
+   const is404 = window.location.pathname !== '/' && !window.location.pathname.startsWith('/#'); 
 
    if (is404) {
      return <NotFound />;
@@ -42,7 +42,6 @@ function App() {
         <Skills />
         <Resume />
         <Contact />
-      
       </main>
       <Footer />
       <BackToTopButton />  
