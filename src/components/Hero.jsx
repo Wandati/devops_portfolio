@@ -8,8 +8,8 @@ import profileImage from '../assets/dev.jpg';
 const Hero = () => {
   const titles = [
     "Cloud & DevOps Engineer",
-    "Kubernetes Enthusiast",
-    "Automation Specialist",
+    "DevSecOps Practitioner",
+    "Kubernetes & Platform Engineer",
     "Infrastructure as Code Expert"
   ];
   
