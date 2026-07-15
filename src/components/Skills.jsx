@@ -1,10 +1,12 @@
 const groups = [
   ['Cloud foundations', 'AWS · EKS · EC2 · Lambda · VPC · IAM · GuardDuty · Security Hub'],
-  ['Infrastructure & policy', 'Terraform · Pulumi · Ansible · CloudFormation · OPA/Rego · Checkov'],
-  ['Cloud native', 'Kubernetes · Helm · Kustomize · Argo CD · Flux · Istio · Falco · Kyverno'],
-  ['AppSec & supply chain', 'Semgrep · SonarQube · Trivy · Grype · Gitleaks · Syft · Cosign · OWASP ZAP'],
-  ['Delivery engineering', 'GitHub Actions · GitLab CI · Jenkins · Tekton · GitOps · Progressive delivery'],
-  ['Observability & response', 'OpenTelemetry · Prometheus · Grafana · ELK · Jaeger · CloudWatch'],
+  ['Infrastructure & policy', 'Terraform · OpenTofu · Pulumi · Ansible · OPA/Rego · Kyverno · Checkov'],
+  ['Cloud native & runtime', 'Kubernetes · Helm · Argo CD · Flux · Cilium · Istio · Falco · Tetragon (eBPF)'],
+  ['AppSec & supply chain', 'Semgrep · Trivy · Grype · Gitleaks · Syft · Cosign/Sigstore · in-toto · OWASP ZAP'],
+  ['AI & LLM security', 'OWASP LLM Top 10 · AI-BOM · Model/dataset provenance · Prompt-injection testing · Agent & MCP guardrails'],
+  ['Identity & secrets', 'SPIFFE/SPIRE · OIDC workload federation · Vault · Short-lived credentials · Secretless CI'],
+  ['Delivery engineering', 'GitHub Actions · GitLab CI · Tekton · GitOps · Progressive delivery · Policy-gated promotion'],
+  ['Observability & response', 'OpenTelemetry · Prometheus · Grafana · Loki · Tempo · CloudWatch · SLOs'],
 ];
 
 export default function Skills() {

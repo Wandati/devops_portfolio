@@ -2,11 +2,17 @@ import { motion } from 'framer-motion';
 import { ArrowDownRight, Github, Linkedin, MapPin, ShieldCheck } from 'lucide-react';
 import profileImage from '../assets/dev.jpg';
 
-const signals = ['NIST SSDF', 'SLSA', 'Zero Trust', 'GitOps'];
+const signals = ['NIST SSDF', 'SLSA L3', 'Zero Trust', 'AI Guardrails', 'GitOps'];
+
+const tickerItems = [
+  'sast · 0 critical', 'sbom attested', 'slsa provenance verified', 'secrets · 0 leaked',
+  'policy as code · enforced', 'ai-bom generated', 'image signed · cosign', 'runtime · ebpf watching',
+  'identities · short-lived', 'llm guardrails · active',
+];
 
 export default function Hero() {
   return (
-    <header id="home" className="hero-grid relative min-h-[88vh] overflow-hidden pt-28 pb-16">
+    <header id="home" className="hero-grid relative min-h-[88vh] overflow-hidden pt-28 pb-10">
       <div className="orb orb-one" />
       <div className="orb orb-two" />
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[1.15fr_.85fr] lg:px-10">
@@ -16,14 +22,14 @@ export default function Hero() {
             I engineer cloud delivery that is <span className="gradient-text">secure by default.</span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-            I’m Marvin Wandati, a DevSecOps & Platform Engineer building hardened cloud infrastructure, trusted software supply chains, and observable Kubernetes platforms that help teams ship with confidence.
+            I’m Marvin Wandati, a DevSecOps & Platform Engineer building hardened cloud infrastructure, trusted software supply chains, and secure paved roads for AI-era engineering teams — so shipping fast and shipping safely are the same motion.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#capabilities" className="button-primary">Explore my work <ArrowDownRight size={18} /></a>
             <a href="mailto:wandatimarvin23@gmail.com" className="button-secondary">Start a conversation</a>
           </div>
           <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-500 dark:text-slate-400">
-            <span className="flex items-center gap-2"><MapPin size={16} /> Nairobi, Kenya · Remote-ready</span>
+            <span className="flex items-center gap-2"><MapPin size={16} /> Milan, Italy · Remote-ready</span>
             <a className="social-link" href="https://github.com/Wandati" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a>
             <a className="social-link" href="https://www.linkedin.com/in/marvin-wandati/" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a>
           </div>
@@ -41,12 +47,20 @@ export default function Hero() {
                 <div><p className="font-semibold text-white">Marvin Wandati Kinyanjui</p><p className="text-sm text-slate-400">DevSecOps · Cloud · Platform</p></div>
               </div>
             </div>
-          </div>
-          <div className="signal-card">
-            <p className="mb-3 font-mono text-[11px] uppercase tracking-[.18em] text-slate-400">delivery guardrails</p>
-            <div className="flex flex-wrap gap-2">{signals.map(signal => <span key={signal}>{signal}</span>)}</div>
+            <div className="signal-card">
+              <p className="mb-3 font-mono text-[11px] uppercase tracking-[.18em] text-slate-400">delivery guardrails</p>
+              <div className="flex flex-wrap gap-2">{signals.map(signal => <span key={signal}>{signal}</span>)}</div>
+            </div>
           </div>
         </motion.div>
+      </div>
+
+      <div className="ticker mt-16" aria-hidden="true">
+        <div className="ticker-track">
+          {[...tickerItems, ...tickerItems].map((item, i) => (
+            <span className="ticker-item" key={i}><span className="ticker-check">✓</span> {item}</span>
+          ))}
+        </div>
       </div>
     </header>
   );
