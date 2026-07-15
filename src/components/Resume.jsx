@@ -1,38 +1,5 @@
-// component/Resume.jsx
-// Description: This component provides a section for users to download the resume. It includes a heading, description, and a download button with an icon.
-import React from 'react';
-import { Download } from 'lucide-react'; 
+import { Download, FileCheck2 } from 'lucide-react';
 
-
-const Resume = () => {
-  // Path to the resume file in the public folder
-  const resumeFileName = 'Marvin_Wandati_Devops.pdf';
-  const resumePath = `/${resumeFileName}`;
-
-  return (
-    // Resume Download Section
-    <section id="resume-download" className="py-16 bg-gray-100 dark:bg-gray-800">
-      <div className="container max-w-4xl mx-auto px-4 text-center">
-        {/* Section Heading */}
-        <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-          Interested in More Details?
-        </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-          Download my full resume for a comprehensive overview of my experience and skills.
-        </p>
-        {/* Download Button */}
-        <a
-          href={resumePath}
-          download // This attribute prompts the browser to download the file instead of navigating to it
-          className="inline-flex items-center gap-2 px-8 py-3 bg-gray-500 hover:bg-blue-500 dark:bg-secondary dark:hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 focus:ring-opacity-75"
-          aria-label={`Download resume (${resumeFileName})`}
-        >
-          <Download size={20} /> 
-          Download Resume
-        </a>
-      </div>
-    </section>
-  );
-};
-
-export default Resume;
+export default function Resume() {
+  return <section className="pb-16 px-5 lg:px-10"><div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-2xl border border-slate-200 p-6 dark:border-white/10 sm:flex-row sm:items-center"><div className="flex gap-4"><FileCheck2 className="text-emerald-500"/><div><h2 className="font-bold">Want the full professional history?</h2><p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Download my résumé for experience, credentials, and project context.</p></div></div><a href="/Marvin_Wandati_Devops.pdf" download className="button-secondary shrink-0"><Download size={17}/> Download résumé</a></div></section>;
+}

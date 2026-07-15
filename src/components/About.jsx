@@ -1,49 +1,18 @@
-// component/About.jsx
-// Description: This component serves as the "About Me" section of the portfolio, providing a brief introduction and skills list.
-import React from 'react';
+import { CheckCircle2 } from 'lucide-react';
 
-const About = () => {
-    return (
-      // About Section
-      <section id="about" className="py-16 bg-white dark:bg-gray-900"> 
-        <div className="container max-w-4xl mx-auto px-4"> 
-          <h2 className="text-3xl font-bold text-center mb-10 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-20 after:h-1 after:bg-primary"> 
-            About Me
-          </h2>
+const principles = ['Security as an engineering constraint—not a final gate', 'Short-lived identity and least privilege by default', 'Evidence, provenance, and policy carried with every release'];
 
-          <div className="flex flex-col items-center text-center">
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8 dark:text-white"> 
-              I'm a <strong>certified DevOps Engineer</strong> with <strong>3+ years of experience</strong>, specializing in <strong>cloud infrastructure, automation, and containerization</strong>. My expertise lies in designing and implementing scalable <strong>CI/CD pipelines, Kubernetes orchestration, and DevSecOps solutions</strong>. Based in Nairobi, Kenya, I am passionate about <strong>optimizing infrastructure performance</strong> and <strong>automating workflows</strong> for <strong>efficient software delivery</strong>.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-3 my-5">
-
-              <span className=" bg-yellow-400 text-white px-4 py-1 rounded-md text-sm font-medium shadow-sm flex items-center gap-1">
-                 AWS
-              </span>
-              <span className="bg-green-600 text-white px-4 py-1 rounded-md text-sm font-medium shadow-sm flex items-center gap-1">
-                Kubernetes
-              </span>
-              <span className="bg-blue-500 text-white px-4 py-1 rounded-md text-sm font-medium shadow-sm flex items-center gap-1"> 
-                 Docker
-              </span>
-              <span className="bg-purple-500 text-white px-4 py-1 rounded-md text-sm font-medium shadow-sm flex items-center gap-1">
-                 Terraform
-              </span>
-               <span className="bg-red-500 text-white px-4 py-1 rounded-md text-sm font-medium shadow-sm flex items-center gap-1"> 
-                 CI/CD
-              </span>
-               <span className="bg-gray-700 text-white px-4 py-1 rounded-md text-sm font-medium shadow-sm flex items-center gap-1">
-                 Automation
-              </span>
-               <span className="bg-green-600 text-white px-4 py-1 rounded-md text-sm font-medium shadow-sm flex items-center gap-1">
-                 DevSecOps
-              </span>
-            </div>
-          </div>
+export default function About() {
+  return (
+    <section id="about" className="section-shell">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[.8fr_1.2fr] lg:px-10">
+        <div><p className="section-kicker">01 / About</p><h2 className="section-title">From automation to <span className="gradient-text">assurance.</span></h2></div>
+        <div>
+          <p className="text-xl leading-9 text-slate-700 dark:text-slate-200">With 3+ years in cloud and DevOps, I focus on the point where delivery speed and security reinforce each other. I design paved roads for teams: reusable infrastructure, automated controls, and production feedback loops that make the secure path the easiest path.</p>
+          <div className="mt-8 grid gap-4">{principles.map(item => <div key={item} className="flex gap-3 text-slate-600 dark:text-slate-300"><CheckCircle2 className="mt-1 shrink-0 text-emerald-500" size={19} /><span>{item}</span></div>)}</div>
+          <div className="mt-10 border-l-2 border-emerald-400 pl-5"><p className="font-mono text-xs uppercase tracking-[.18em] text-emerald-600 dark:text-emerald-400">Current mission</p><p className="mt-2 text-lg font-semibold">Build resilient platforms where trust is continuously verified and delivery stays fast.</p></div>
         </div>
-      </section>
-    );
-  };
-
-export default About;
+      </div>
+    </section>
+  );
+}

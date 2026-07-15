@@ -1,57 +1,12 @@
-// component/ProfessionalFocus.jsx
-// Description: This component highlights the professional focus areas of the individual, including observability, automation, Kubernetes, and CI/CD optimization. It uses icons to visually represent each area and is styled for responsiveness and dark mode compatibility.
-import { FaSearchDollar, FaCogs, FaSitemap, FaShieldAlt } from 'react-icons/fa';
+import { Boxes, CloudCog, Radar, Workflow } from 'lucide-react';
 
-const ProfessionalFocus = () => {
-    const focusAreas = [
-      {
-        icon: <FaSearchDollar size={24} className="text-primary mb-3" />,
-        title: "AI-Driven Observability & FinOps",
-        description: "Implementing full-stack observability (ELK, Prometheus, OpenTelemetry) and AI-driven analytics (CAST AI) for proactive alerting, performance tuning, and cloud cost optimization."
-      },
-      {
-        icon: <FaCogs size={24} className="text-primary mb-3" />,
-        title: "Infrastructure Automation (IaC)",
-        description: "Building scalable, repeatable infrastructure using Terraform and Ansible with Policy as Code (OPA, Checkov, tfsec) to enforce security guardrails and GitOps workflows via Argo CD."
-      },
-      {
-        icon: <FaSitemap size={24} className="text-primary mb-3" />,
-        title: "Kubernetes Operations & Security",
-        description: "Designing and managing secure Kubernetes clusters (EKS) with runtime threat detection (Falco), admission control (OPA/Gatekeeper), service mesh (Istio), and resilient storage (Longhorn, Kasten K10)."
-      },
-      {
-        icon: <FaShieldAlt size={24} className="text-primary mb-3" />,
-        title: "DevSecOps & Supply Chain Security",
-        description: "Embedding security across the SDLC: SAST (Semgrep, SonarQube), container scanning (Trivy), secret detection (Gitleaks), SBOM generation (Syft), image signing (Cosign/Sigstore), and SLSA compliance."
-      }
-    ];
+const capabilities = [
+  { icon: Workflow, number: '01', title: 'Trusted software supply chains', text: 'CI/CD guardrails spanning code, dependencies, builds, and artifacts—with SAST, secret detection, SBOMs, provenance, signing, and risk-based promotion.', tags: ['SLSA', 'Cosign', 'Syft', 'Semgrep'] },
+  { icon: CloudCog, number: '02', title: 'Identity-first cloud security', text: 'Hardened AWS foundations with least privilege, short-lived credentials, policy as code, encrypted workloads, posture monitoring, and auditable change.', tags: ['AWS IAM', 'OPA', 'Terraform', 'Security Hub'] },
+  { icon: Boxes, number: '03', title: 'Secure platform engineering', text: 'Kubernetes paved roads with GitOps reconciliation, admission controls, workload isolation, runtime detection, and developer-friendly golden paths.', tags: ['EKS', 'Argo CD', 'Kyverno', 'Falco'] },
+  { icon: Radar, number: '04', title: 'Detection & resilience', text: 'Telemetry that connects engineering and security: OpenTelemetry signals, actionable SLOs, threat detection, incident context, and recovery-ready operations.', tags: ['OpenTelemetry', 'Prometheus', 'Grafana', 'SLOs'] },
+];
 
-    return (
-      <section id="focus" className="py-16 bg-gray-50 dark:bg-gray-900">
-        <div className="container max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-20 after:h-1 after:bg-primary">
-            Professional Focus
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {focusAreas.map((area, index) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-md dark:shadow-lg dark:shadow-gray-700/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col items-center"
-              >
-                {area.icon}
-                <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-100">
-                  {area.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {area.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-export default ProfessionalFocus;
+export default function ProfessionalFocus() {
+  return <section id="capabilities" className="section-shell bg-slate-50 dark:bg-slate-900/40"><div className="mx-auto max-w-7xl px-5 lg:px-10"><p className="section-kicker">02 / Capabilities</p><div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><h2 className="section-title max-w-2xl">Security embedded across the <span className="gradient-text">delivery system.</span></h2><p className="max-w-sm text-slate-600 dark:text-slate-400">Outcome-led engineering across code, cloud, clusters, and runtime.</p></div><div className="grid gap-px overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 dark:border-white/10 dark:bg-white/10 md:grid-cols-2">{capabilities.map(({icon: Icon, number, title, text, tags}) => <article className="capability-card" key={title}><div className="flex items-center justify-between"><Icon className="text-emerald-500" size={28}/><span className="font-mono text-xs text-slate-400">{number}</span></div><h3 className="mt-8 text-2xl font-bold tracking-tight">{title}</h3><p className="mt-4 leading-7 text-slate-600 dark:text-slate-400">{text}</p><div className="mt-7 flex flex-wrap gap-2">{tags.map(tag => <span className="tech-pill" key={tag}>{tag}</span>)}</div></article>)}</div></div></section>;
+}

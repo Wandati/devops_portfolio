@@ -1,135 +1,53 @@
-// component/Hero.jsx
-// Description: This component serves as the hero section of the application, showcasing the user's name, title, and social links with animations and icons.
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; 
-import { Linkedin, Gitlab, Github, Mail } from 'lucide-react'; 
-import profileImage from '../assets/dev.jpg'; 
+import { motion } from 'framer-motion';
+import { ArrowDownRight, Github, Linkedin, MapPin, ShieldCheck } from 'lucide-react';
+import profileImage from '../assets/dev.jpg';
 
-const Hero = () => {
-  const titles = [
-    "Cloud & DevOps Engineer",
-    "DevSecOps Practitioner",
-    "Kubernetes & Platform Engineer",
-    "Infrastructure as Code Expert"
-  ];
-  
-  const [titleIndex, setTitleIndex] = useState(0);
+const signals = ['NIST SSDF', 'SLSA', 'Zero Trust', 'GitOps'];
 
-  // Timer to cycle through titles
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
-    }, 5000); // Change title every 4 seconds (adjust timing as needed)
-
-    // Clear interval on component unmount
-    return () => clearInterval(interval);
-  }, [titles.length]); // Rerun effect if the number of titles changes
-
-  // Animation variants for the text
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
-  };
-
+export default function Hero() {
   return (
-    <header className="bg-white text-white py-16 text-center overflow-hidden dark:bg-gray-900"> 
-      <div className="container max-w-6xl mx-auto px-4">
-        <div className="flex flex-col items-center relative z-10">
-         {/* Profile Image */}
-         <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
-            className="w-40 h-40 rounded-full border-4 border-primary mb-5 overflow-hidden shadow-lg" 
-         >
-            <img
-              src={profileImage}
-              alt="Marvin Wandati Kinyanjui - DevOps Engineer"
-              className="w-full h-full object-cover"
-              width="160"
-              height="160"
-            />
-         </motion.div>
-
-          {/* Name */}
-          <motion.h2
-             initial={{ opacity: 0, y: -20 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.5, delay: 0.2 }}
-             className="text-4xl md:text-5xl font-bold mb-2 text-gray-900 dark:text-white" 
-          >
-            Marvin Wandati Kinyanjui
-          </motion.h2>
-
-          {/* Animated Titles with Framer Motion */}
-          <div className="h-12 my-4 flex items-center justify-center"> 
-            <AnimatePresence mode="wait"> {/* Ensures one text exits before the next enters */}
-              <motion.p
-                key={titleIndex} 
-                variants={textVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                transition={{ duration: 0.5 }} 
-                className="text-xl md:text-2xl text-blue-400 " 
-              >
-                {titles[titleIndex]}
-              </motion.p>
-            </AnimatePresence>
+    <header id="home" className="hero-grid relative min-h-[88vh] overflow-hidden pt-28 pb-16">
+      <div className="orb orb-one" />
+      <div className="orb orb-two" />
+      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[1.15fr_.85fr] lg:px-10">
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65 }}>
+          <div className="eyebrow"><span className="status-dot" /> Available for high-impact DevSecOps work</div>
+          <h1 className="mt-7 max-w-4xl text-5xl font-black leading-[.98] tracking-[-.055em] text-slate-950 dark:text-white sm:text-7xl">
+            I engineer cloud delivery that is <span className="gradient-text">secure by default.</span>
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+            I’m Marvin Wandati, a DevSecOps & Platform Engineer building hardened cloud infrastructure, trusted software supply chains, and observable Kubernetes platforms that help teams ship with confidence.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#capabilities" className="button-primary">Explore my work <ArrowDownRight size={18} /></a>
+            <a href="mailto:wandatimarvin23@gmail.com" className="button-secondary">Start a conversation</a>
           </div>
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-500 dark:text-slate-400">
+            <span className="flex items-center gap-2"><MapPin size={16} /> Nairobi, Kenya · Remote-ready</span>
+            <a className="social-link" href="https://github.com/Wandati" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a>
+            <a className="social-link" href="https://www.linkedin.com/in/marvin-wandati/" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a>
+          </div>
+        </motion.div>
 
-          {/* Social Links with Lucide Icons */}
-          <motion.div
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.5, delay: 0.4 }}
-            
-             className="flex flex-wrap gap-5 mt-5 justify-center"
-          >
-            {/* LinkedIn: Dark default, Blue on hover */}
-            <a
-              href="https://www.linkedin.com/in/marvin-wandati/"
-              target="_blank"
-              rel="noopener noreferrer" 
-              className="text-gray-500 hover:text-blue-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 rounded" 
-              aria-label="Connect with Marvin Wandati on LinkedIn (opens in new tab)"
-            >
-              <Linkedin size={28} /> 
-            </a>
-            {/* GitLab: Dark default, Orange on hover */}
-            <a
-              href="https://gitlab.com/wandat2/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-orange-500 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75 rounded" 
-              aria-label="View Marvin Wandati's GitLab Profile (opens in new tab)"
-            >
-              <Gitlab size={28} /> 
-            </a>
-            {/* GitHub: Dark default, Lighter Gray/White on hover */}
-            <a
-              href="https://github.com/Wandati"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 rounded" 
-              aria-label="View Marvin Wandati's GitHub Profile (opens in new tab)"
-            >
-              <Github size={28} /> 
-            </a>
-            {/* Mail: Dark default, Green on hover */}
-            <a
-              href="mailto:wandatimarvin23@gmail.com"
-              className="text-gray-500 hover:text-green-500 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 rounded"
-              aria-label="Contact Marvin Wandati via Email"
-            >
-              <Mail size={28} /> 
-            </a>
-          </motion.div>
-        </div>
+        <motion.div className="relative mx-auto w-full max-w-md" initial={{ opacity: 0, scale: .94 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: .15, duration: .65 }}>
+          <div className="profile-frame">
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 font-mono text-xs text-emerald-300">
+              <span>security_context.yaml</span><span className="flex items-center gap-2"><span className="status-dot" /> verified</span>
+            </div>
+            <div className="p-5">
+              <img src={profileImage} alt="Marvin Wandati, DevSecOps and Platform Engineer" className="aspect-[4/4.2] w-full rounded-2xl object-cover object-top grayscale-[15%]" />
+              <div className="mt-5 flex items-center gap-3">
+                <div className="rounded-xl bg-emerald-400/10 p-2.5 text-emerald-300"><ShieldCheck /></div>
+                <div><p className="font-semibold text-white">Marvin Wandati Kinyanjui</p><p className="text-sm text-slate-400">DevSecOps · Cloud · Platform</p></div>
+              </div>
+            </div>
+          </div>
+          <div className="signal-card">
+            <p className="mb-3 font-mono text-[11px] uppercase tracking-[.18em] text-slate-400">delivery guardrails</p>
+            <div className="flex flex-wrap gap-2">{signals.map(signal => <span key={signal}>{signal}</span>)}</div>
+          </div>
+        </motion.div>
       </div>
     </header>
   );
-};
-
-export default Hero;
+}

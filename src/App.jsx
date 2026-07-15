@@ -16,9 +16,7 @@ function App() {
    if (is404) {
      return <NotFound />;
    }
-  const [theme, setTheme] = useState(
-    localStorage.getItem('theme') || 'light'
-  );
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -33,9 +31,9 @@ function App() {
 
 
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-white text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-white">
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <main className="space-y-16 px-4 md:px-16">
+      <main>
         <Hero />
         <About />
         <ProfessionalFocus />
