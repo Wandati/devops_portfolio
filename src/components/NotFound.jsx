@@ -1,6 +1,5 @@
 // component/NotFound.jsx
 // Description: This component serves as a 404 Not Found page, providing a message and a link back to the home page.
-import React from 'react';
 //import { Link } from 'react-router-dom'; // Uncomment if using react-router-dom
 
 const NotFound = () => {

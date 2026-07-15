@@ -1,7 +1,7 @@
 // component/BackToTopButton.jsx
 // Description: This component provides a button that scrolls the page back to the top when clicked. It appears when the user scrolls down a certain distance.
 // It uses React hooks for state management and side effects, and includes smooth scrolling functionality.
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaArrowUp } from 'react-icons/fa'; 
 
 const BackToTopButton = () => {

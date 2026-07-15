@@ -10,12 +10,6 @@ import BackToTopButton from './components/BackToTopButton';
 import ProfessionalFocus from './components/ProfessionalFocus';
 import Resume from './components/Resume';
 function App() {
-   // Basic check for 404 - Replace with proper routing later
-   const is404 = window.location.pathname !== '/' && !window.location.pathname.startsWith('/#'); 
-
-   if (is404) {
-     return <NotFound />;
-   }
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
@@ -28,6 +22,13 @@ function App() {
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
+
+  // Basic check for 404 - Replace with proper routing later
+  const is404 = window.location.pathname !== '/' && !window.location.pathname.startsWith('/#');
+
+  if (is404) {
+    return <NotFound />;
+  }
 
 
   return (
