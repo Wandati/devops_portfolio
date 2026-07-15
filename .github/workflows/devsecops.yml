@@ -150,7 +150,7 @@ jobs:
         run: docker load --input /tmp/portfolio-image.tar
 
       - name: Run Trivy vulnerability scan
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: 'portfolio:${{ github.sha }}'
           format: 'sarif'
@@ -166,7 +166,7 @@ jobs:
           category: 'trivy-container'
 
       - name: Run Trivy config scan (IaC)
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: 'config'
           scan-ref: '.'
