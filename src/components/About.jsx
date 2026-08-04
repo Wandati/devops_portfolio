@@ -1,16 +1,46 @@
-import { CheckCircle2 } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowDownRight, Database, Gauge, PackageCheck, TimerReset } from 'lucide-react';
 
-const principles = ['Security as an engineering constraint—not a final gate', 'Short-lived identity and least privilege by default—for humans, workloads, and AI agents', 'Evidence, provenance, and policy carried with every release', 'AI accelerates delivery; verification keeps it trustworthy'];
+const outcomes = [
+  { value: '<10', unit: 'min', label: 'deployment time', note: 'down from 30 minutes', icon: TimerReset, accent: 'lime' },
+  { value: '1,014→9', unit: '', label: 'container findings', note: 'critical: 25 → 0', icon: PackageCheck, accent: 'cyan' },
+  { value: '80', unit: '%', label: 'lower search latency', note: '3.22M company documents', icon: Gauge, accent: 'violet' },
+  { value: '$15.6K+', unit: '', label: 'annual RDS savings', note: '13.2 TB blue-green migration', icon: Database, accent: 'amber' },
+];
 
 export default function About() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section id="about" className="section-shell">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[.8fr_1.2fr] lg:px-10">
-        <div><p className="section-kicker">01 / About</p><h2 className="section-title">From automation to <span className="gradient-text">assurance.</span></h2></div>
-        <div>
-          <p className="text-xl leading-9 text-slate-700 dark:text-slate-200">With 3+ years in cloud and DevOps, I focus on the point where delivery speed and security reinforce each other. I design paved roads for teams: reusable infrastructure, automated controls, and production feedback loops that make the secure path the easiest path—including for the AI-assisted workflows reshaping how software gets built.</p>
-          <div className="mt-8 grid gap-4">{principles.map(item => <div key={item} className="flex gap-3 text-slate-600 dark:text-slate-300"><CheckCircle2 className="mt-1 shrink-0 text-emerald-500" size={19} /><span>{item}</span></div>)}</div>
-          <div className="mt-10 border-l-2 border-emerald-400 pl-5"><p className="font-mono text-xs uppercase tracking-[.18em] text-emerald-600 dark:text-emerald-400">Current mission</p><p className="mt-2 text-lg font-semibold">Build resilient platforms where trust is continuously verified and delivery stays fast.</p></div>
+    <section id="impact" className="section-shell">
+      <div className="mx-auto max-w-[88rem] px-5 lg:px-10">
+        <div className="section-heading">
+          <div><p className="section-kicker">01 / Proof over promises</p><h2 className="section-title">Measured in production.</h2></div>
+          <p className="section-intro">Security, speed, reliability, and cost—improved together.</p>
+        </div>
+
+        <div className="outcome-grid">
+          {outcomes.map(({ value, unit, label, note, icon: Icon, accent }, index) => (
+            <motion.article
+              className={`outcome-card accent-${accent}`}
+              key={label}
+              initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: .35 }}
+              transition={{ delay: index * .08, duration: .55 }}
+            >
+              <div className="outcome-icon"><Icon size={20} /></div>
+              <div><strong>{value}<small>{unit}</small></strong><p>{label}</p></div>
+              <span>{note}</span>
+              <ArrowDownRight className="outcome-arrow" size={24} />
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="about-strip">
+          <p>Current scope</p>
+          <div><strong>Sole DevSecOps / SRE owner</strong><span>AWS-native B2B SaaS · development, staging, production · 10+ applications</span></div>
+          <div className="availability"><span className="status-dot" /> Milan · remote / hybrid · on-call ready</div>
         </div>
       </div>
     </section>

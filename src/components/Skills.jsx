@@ -1,14 +1,30 @@
+import { Activity, Boxes, Cloud, Code2, GitBranch, ShieldCheck } from 'lucide-react';
+
 const groups = [
-  ['Cloud foundations', 'AWS · EKS · EC2 · Lambda · VPC · IAM · GuardDuty · Security Hub'],
-  ['Infrastructure & policy', 'Terraform · OpenTofu · Pulumi · Ansible · OPA/Rego · Kyverno · Checkov'],
-  ['Cloud native & runtime', 'Kubernetes · Helm · Argo CD · Flux · Cilium · Istio · Falco · Tetragon (eBPF)'],
-  ['AppSec & supply chain', 'Semgrep · Trivy · Grype · Gitleaks · Syft · Cosign/Sigstore · in-toto · OWASP ZAP'],
-  ['AI & LLM security', 'OWASP LLM Top 10 · AI-BOM · Model/dataset provenance · Prompt-injection testing · Agent & MCP guardrails'],
-  ['Identity & secrets', 'SPIFFE/SPIRE · OIDC workload federation · Vault · Short-lived credentials · Secretless CI'],
-  ['Delivery engineering', 'GitHub Actions · GitLab CI · Tekton · GitOps · Progressive delivery · Policy-gated promotion'],
-  ['Observability & response', 'OpenTelemetry · Prometheus · Grafana · Loki · Tempo · CloudWatch · SLOs'],
+  { icon: Cloud, title: 'AWS', list: 'App Runner · ECS/Fargate · RDS · OpenSearch · CloudFront · IAM · KMS' },
+  { icon: Code2, title: 'Infrastructure', list: 'Terraform · CloudFormation · Ansible · Python · Bash · Linux' },
+  { icon: Boxes, title: 'Cloud native', list: 'Docker · Kubernetes · EKS · Helm · Istio · Argo CD · Kasten K10' },
+  { icon: GitBranch, title: 'Delivery', list: 'GitHub Actions · GitLab CI · Jenkins · OIDC · GitOps · promotion gates' },
+  { icon: ShieldCheck, title: 'Security', list: 'Trivy · CodeQL · Gitleaks · Cosign · CycloneDX · OPA/Kyverno · Vault' },
+  { icon: Activity, title: 'Reliability', list: 'OpenObserve · Grafana · Prometheus · CloudWatch · X-Ray · ELK · runbooks' },
 ];
 
 export default function Skills() {
-  return <section id="stack" className="section-shell"><div className="mx-auto max-w-7xl px-5 lg:px-10"><div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]"><div><p className="section-kicker">03 / Toolchain</p><h2 className="section-title">Deep enough to build.<br/><span className="gradient-text">Broad enough to connect.</span></h2><p className="mt-6 max-w-md leading-7 text-slate-600 dark:text-slate-400">Tools change. The durable skill is choosing controls that fit the threat model, delivery flow, and operating reality.</p></div><div className="border-t border-slate-200 dark:border-white/10">{groups.map(([title, list], index) => <div className="stack-row" key={title}><span className="font-mono text-xs text-emerald-600 dark:text-emerald-400">0{index + 1}</span><div><h3 className="font-bold">{title}</h3><p className="mt-2 leading-7 text-slate-600 dark:text-slate-400">{list}</p></div></div>)}</div></div></div></section>;
+  return (
+    <section id="stack" className="section-shell">
+      <div className="mx-auto max-w-[88rem] px-5 lg:px-10">
+        <div className="section-heading">
+          <div><p className="section-kicker">04 / Working stack</p><h2 className="section-title">Tools used in context.</h2></div>
+          <p className="section-intro">Selected from the current CV—focused on what has been operated, automated, or secured.</p>
+        </div>
+        <div className="skills-grid">
+          {groups.map(({ icon: Icon, title, list }, index) => (
+            <article key={title} className="skill-card">
+              <span>0{index + 1}</span><Icon size={24} /><h3>{title}</h3><p>{list}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
