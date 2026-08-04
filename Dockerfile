@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────
 # Stage 1: Builder
 # ─────────────────────────────────────────────
-FROM node:20-alpine AS builder
+FROM node:24-alpine AS builder
 
 # Set working directory
 WORKDIR /app
@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Install dependencies with clean install (uses lockfile)
-RUN npm ci --omit=dev=false
+RUN npm ci
 
 # Copy source code
 COPY . .
@@ -21,7 +21,7 @@ RUN npm run build
 # ─────────────────────────────────────────────
 # Stage 2: Production (Nginx)
 # ─────────────────────────────────────────────
-FROM nginx:1.27-alpine AS production
+FROM nginx:1.30-alpine AS production
 
 # Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
@@ -46,6 +46,6 @@ USER appuser
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD wget -qO- http://localhost:8080/ || exit 1
+  CMD wget -qO- http://127.0.0.1:8080/ || exit 1
 
 CMD ["nginx", "-g", "daemon off;"]

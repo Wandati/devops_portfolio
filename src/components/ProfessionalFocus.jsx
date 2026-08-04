@@ -1,14 +1,72 @@
-import { Boxes, BrainCircuit, CloudCog, Crosshair, Radar, Workflow } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowUpRight, Building2, CloudCog } from 'lucide-react';
 
-const capabilities = [
-  { icon: Workflow, number: '01', title: 'Trusted software supply chains', text: 'CI/CD guardrails spanning code, dependencies, builds, and artifacts—with SAST, secret detection, SBOMs, SLSA provenance, keyless signing, and risk-based promotion.', tags: ['SLSA L3', 'Sigstore', 'in-toto', 'Semgrep'] },
-  { icon: BrainCircuit, number: '02', title: 'Securing AI-native delivery', text: 'Guardrails for LLM-powered systems and AI-assisted engineering: model and dataset provenance, AI-BOMs, prompt-injection testing, agent/MCP permission boundaries, and policy checks on AI-generated code.', tags: ['OWASP LLM Top 10', 'AI-BOM', 'Model signing', 'LLM guardrails'] },
-  { icon: CloudCog, number: '03', title: 'Identity-first cloud security', text: 'Least privilege for humans and workloads alike: non-human identity at scale, workload identity federation instead of static secrets, policy as code, and auditable change.', tags: ['SPIFFE/SPIRE', 'OIDC federation', 'OPA', 'AWS IAM'] },
-  { icon: Boxes, number: '04', title: 'Secure platform engineering', text: 'Kubernetes paved roads with GitOps reconciliation, admission controls, workload isolation, and golden paths that make the secure route the fastest route for developers.', tags: ['EKS', 'Argo CD', 'Kyverno', 'Backstage'] },
-  { icon: Radar, number: '05', title: 'Runtime detection & resilience', text: 'eBPF-powered visibility from kernel to service mesh: runtime threat detection, OpenTelemetry signals, actionable SLOs, incident context, and recovery-ready operations.', tags: ['eBPF', 'Falco', 'Tetragon', 'OpenTelemetry'] },
-  { icon: Crosshair, number: '06', title: 'Posture & exposure management', text: 'From scanner noise to decisions: correlating findings across code, cloud, and runtime, prioritizing by reachability and exploit likelihood, and continuously validating what attackers can actually reach.', tags: ['ASPM', 'CTEM', 'Reachability', 'EPSS'] },
+const roles = [
+  {
+    period: 'FEB 2026 — NOW',
+    role: 'DevSecOps / Site Reliability Engineer',
+    company: 'Expandi Limited / Expandi Agency SRL',
+    context: 'Milan · AWS-native B2B SaaS · sole infrastructure owner',
+    icon: CloudCog,
+    highlights: [
+      'Own modular Terraform infrastructure across 3 environments and 10+ applications.',
+      'Rebuilt CI/CD with promotion gates, SAST, secrets, dependency/image scans, SBOMs, signing, and AWS OIDC.',
+      'Operate production telemetry, incident runbooks, recovery paths, and p95/p99 alerting.',
+    ],
+    tags: ['AWS', 'Terraform', 'GitHub Actions', 'OpenSearch', 'Observability'],
+  },
+  {
+    period: 'FEB — AUG 2025',
+    role: 'DevOps / Site Reliability Engineer',
+    company: 'Ryanada Limited',
+    context: 'Remote · 100+ servers · 2 Kubernetes clusters',
+    icon: Building2,
+    highlights: [
+      'Standardised 100+ VPS servers with reusable Ansible playbooks.',
+      'Centralised service signals with ELK, ElastAlert, Slack, and Playwright journeys.',
+      'Protected stateful Kubernetes workloads with Longhorn snapshots and Kasten K10 backups.',
+    ],
+    tags: ['Ansible', 'Kubernetes', 'ELK', 'Grafana', 'Disaster recovery'],
+  },
 ];
 
 export default function ProfessionalFocus() {
-  return <section id="capabilities" className="section-shell bg-slate-50 dark:bg-slate-900/40"><div className="mx-auto max-w-7xl px-5 lg:px-10"><p className="section-kicker">02 / Capabilities</p><div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><h2 className="section-title max-w-2xl">Security embedded across the <span className="gradient-text">delivery system.</span></h2><p className="max-w-sm text-slate-600 dark:text-slate-400">Outcome-led engineering across code, cloud, clusters, runtime—and now the AI layer on top of all of it.</p></div><div className="grid gap-px overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 dark:border-white/10 dark:bg-white/10 md:grid-cols-2">{capabilities.map(({icon: Icon, number, title, text, tags}) => <article className="capability-card" key={title}><div className="flex items-center justify-between"><Icon className="text-emerald-500" size={28}/><span className="font-mono text-xs text-slate-400">{number}</span></div><h3 className="mt-8 text-2xl font-bold tracking-tight">{title}</h3><p className="mt-4 leading-7 text-slate-600 dark:text-slate-400">{text}</p><div className="mt-7 flex flex-wrap gap-2">{tags.map(tag => <span className="tech-pill" key={tag}>{tag}</span>)}</div></article>)}</div></div></section>;
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <section id="experience" className="section-shell section-ink">
+      <div className="mx-auto max-w-[88rem] px-5 lg:px-10">
+        <div className="section-heading">
+          <div><p className="section-kicker">02 / Experience</p><h2 className="section-title">Ownership, end to end.</h2></div>
+          <p className="section-intro">From infrastructure code to first-line incident response.</p>
+        </div>
+
+        <div className="experience-list">
+          {roles.map(({ period, role, company, context, icon: Icon, highlights, tags }, index) => (
+            <motion.article
+              className="experience-card"
+              key={company}
+              initial={reduceMotion ? false : { opacity: 0, x: index % 2 ? 28 : -28 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: .25 }}
+              transition={{ duration: .6 }}
+            >
+              <div className="experience-index">0{index + 1}</div>
+              <div className="experience-role">
+                <div className="experience-icon"><Icon /></div>
+                <p>{period}</p>
+                <h3>{role}</h3>
+                <strong>{company}</strong>
+                <span>{context}</span>
+              </div>
+              <div className="experience-detail">
+                <ul>{highlights.map(item => <li key={item}><ArrowUpRight size={16} />{item}</li>)}</ul>
+                <div>{tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

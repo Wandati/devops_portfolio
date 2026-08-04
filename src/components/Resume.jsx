@@ -1,5 +1,16 @@
-import { Download, FileCheck2 } from 'lucide-react';
+import { ArrowUpRight, Download, FileCheck2 } from 'lucide-react';
 
 export default function Resume() {
-  return <section className="pb-16 px-5 lg:px-10"><div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-2xl border border-slate-200 p-6 dark:border-white/10 sm:flex-row sm:items-center"><div className="flex gap-4"><FileCheck2 className="text-emerald-500"/><div><h2 className="font-bold">Want the full professional history?</h2><p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Download my résumé for experience, credentials, and project context.</p></div></div><a href="/Marvin_Wandati_Devops.pdf" download className="button-secondary shrink-0"><Download size={17}/> Download résumé</a></div></section>;
+  return (
+    <section className="resume-wrap px-5 pb-6 lg:px-10">
+      <div className="resume-card mx-auto max-w-[88rem]">
+        <div className="resume-icon"><FileCheck2 /></div>
+        <div><p className="section-kicker">Current CV · 2 pages</p><h2>Full context, zero filler.</h2><span>Experience · measurable outcomes · training · education · work authorisation</span></div>
+        <div className="resume-actions">
+          <a href="/Marvin_Wandati_CV_Prima.pdf" target="_blank" rel="noreferrer">Open CV <ArrowUpRight size={17} /></a>
+          <a href="/Marvin_Wandati_CV_Prima.pdf" download>Download <Download size={17} /></a>
+        </div>
+      </div>
+    </section>
+  );
 }
