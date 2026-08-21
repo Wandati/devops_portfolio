@@ -11,12 +11,36 @@ import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 import BackToTopButton from './components/BackToTopButton';
 
+// Storage can throw outright — Safari Lock Down, private windows, browsers set
+// to block site data — and an exception here would blank the whole page.
+// Keep this in sync with public/theme.js, which applies the same value before
+// first paint so dark-mode visitors never see the light palette flash.
+function readTheme() {
+  try {
+    const stored = localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+  } catch {
+    /* storage unavailable — fall through to the default */
+  }
+  return 'dark';
+}
+
+function persistTheme(theme) {
+  try {
+    localStorage.setItem('theme', theme);
+  } catch {
+    /* storage unavailable — the theme still applies for this session */
+  }
+}
+
 function App() {
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+  const [theme, setTheme] = useState(readTheme);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
-    localStorage.setItem('theme', theme);
+    document.querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'dark' ? '#050908' : '#f6f8f7');
+    persistTheme(theme);
   }, [theme]);
 
   if (window.location.pathname !== '/') {

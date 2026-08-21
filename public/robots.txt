@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devops-portfolio-cyan.vercel.app/sitemap.xml

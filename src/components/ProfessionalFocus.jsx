@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, Building2, CloudCog } from 'lucide-react';
+import useReveal from '../hooks/useReveal';
 
 const roles = [
   {
@@ -31,7 +31,7 @@ const roles = [
 ];
 
 export default function ProfessionalFocus() {
-  const reduceMotion = useReducedMotion();
+  const [listRef, visible] = useReveal();
 
   return (
     <section id="experience" className="section-shell section-ink">
@@ -41,29 +41,26 @@ export default function ProfessionalFocus() {
           <p className="section-intro">From infrastructure code to first-line incident response.</p>
         </div>
 
-        <div className="experience-list">
+        <div className="experience-list" ref={listRef}>
           {roles.map(({ period, role, company, context, icon: Icon, highlights, tags }, index) => (
-            <motion.article
-              className="experience-card"
+            <article
+              className={`experience-card reveal${visible ? ' is-visible' : ''}`}
               key={company}
-              initial={reduceMotion ? false : { opacity: 0, x: index % 2 ? 28 : -28 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: .25 }}
-              transition={{ duration: .6 }}
+              style={{ '--reveal-delay': `${index * 0.1}s` }}
             >
               <div className="experience-index">0{index + 1}</div>
               <div className="experience-role">
-                <div className="experience-icon"><Icon /></div>
+                <div className="experience-icon"><Icon aria-hidden="true" /></div>
                 <p>{period}</p>
                 <h3>{role}</h3>
                 <strong>{company}</strong>
                 <span>{context}</span>
               </div>
               <div className="experience-detail">
-                <ul>{highlights.map(item => <li key={item}><ArrowUpRight size={16} />{item}</li>)}</ul>
+                <ul>{highlights.map(item => <li key={item}><ArrowUpRight size={16} aria-hidden="true" />{item}</li>)}</ul>
                 <div>{tags.map(tag => <span key={tag}>{tag}</span>)}</div>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

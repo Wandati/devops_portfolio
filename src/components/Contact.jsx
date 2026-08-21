@@ -2,7 +2,7 @@ import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Contact() {
   return (
-    <section id="contact" className="px-5 py-16 lg:px-10 lg:py-24">
+    <section id="contact" className="contact-section px-5 lg:px-10">
       <div className="contact-panel mx-auto max-w-[88rem]">
         <div className="contact-rings" aria-hidden="true" />
         <p className="section-kicker">05 / Open channel</p>

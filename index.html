@@ -4,23 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/devops2.png" />
+    <link rel="canonical" href="https://devops-portfolio-cyan.vercel.app/" />
+
+    <!-- Applies the stored theme before first paint. Must stay render-blocking
+         and must stay above the stylesheet, or dark-mode visitors get a flash
+         of the light palette. External (not inline) because CSP is script-src 'self'. -->
+    <script src="/theme.js"></script>
 
     <!-- SEO -->
     <meta name="description" content="Marvin Wandati is a DevSecOps and Site Reliability Engineer in Milan operating AWS infrastructure, secure CI/CD, Kubernetes platforms, production observability, and incident response." />
     <meta name="keywords" content="DevSecOps Engineer, Site Reliability Engineer, SRE, AWS, Kubernetes, Terraform, GitHub Actions, CI/CD Security, SBOM, Cosign, Observability, Milan, Italy, Marvin Wandati" />
     <meta name="author" content="Marvin Wandati Kinyanjui" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Security: referrer policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph — absolute URLs, crawlers do not resolve relative paths -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Marvin Wandati" />
+    <meta property="og:url" content="https://devops-portfolio-cyan.vercel.app/" />
     <meta property="og:title" content="Marvin Wandati | DevSecOps / SRE" />
     <meta property="og:description" content="Production infrastructure that proves itself: secure AWS delivery, reliability, observability, and measurable outcomes." />
-    <meta property="og:image" content="/devops.png" />
+    <meta property="og:image" content="https://devops-portfolio-cyan.vercel.app/devops.png" />
+    <meta property="og:image:alt" content="Marvin Wandati — DevSecOps and Site Reliability Engineer" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Marvin Wandati | DevSecOps / SRE" />
+    <meta name="twitter:description" content="Production infrastructure that proves itself: secure AWS delivery, reliability, observability, and measurable outcomes." />
+    <meta name="twitter:image" content="https://devops-portfolio-cyan.vercel.app/devops.png" />
 
     <meta name="theme-color" content="#020617" />
-    <title>Marvin Wandati | DevSecOps & Site Reliability Engineer</title>
+    <title>Marvin Wandati | DevSecOps &amp; Site Reliability Engineer</title>
   </head>
   <body>
     <div id="root"></div>

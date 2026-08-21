@@ -1,0 +1,5 @@
+Contact: mailto:wandatimarvin23@gmail.com
+Expires: 2027-08-21T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://devops-portfolio-cyan.vercel.app/.well-known/security.txt
+Policy: https://github.com/Wandati/devops_portfolio/blob/main/SECURITY.md

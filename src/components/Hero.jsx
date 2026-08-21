@@ -1,4 +1,3 @@
-import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDownRight, Download, Github, Linkedin, MapPin, ShieldCheck } from 'lucide-react';
 import profileImage from '../assets/dev.jpg';
 
@@ -11,8 +10,6 @@ const evidence = [
 ];
 
 export default function Hero() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <header id="home" className="hero-shell">
       <div className="hero-noise" aria-hidden="true" />
@@ -20,11 +17,7 @@ export default function Hero() {
       <div className="hero-orbit orbit-b" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto grid max-w-[88rem] items-center gap-14 px-5 pb-14 pt-32 lg:grid-cols-[1.05fr_.95fr] lg:px-10 lg:pb-20 lg:pt-40">
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: .7, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <div className="rise-in">
           <div className="eyebrow"><span className="status-dot" /> Operating production systems</div>
           <h1 className="hero-title">
             Infrastructure that<br />
@@ -38,18 +31,13 @@ export default function Hero() {
             <a href="/Marvin_Wandati_CV_Prima.pdf" download className="button-secondary"><Download size={17} /> Download CV</a>
           </div>
           <div className="hero-meta">
-            <span><MapPin size={15} /> Milan, Italy</span>
-            <a href="https://github.com/Wandati" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
-            <a href="https://www.linkedin.com/in/marvin-wandati/" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
+            <span><MapPin size={15} aria-hidden="true" /> Milan, Italy</span>
+            <a href="https://github.com/Wandati" target="_blank" rel="noreferrer"><Github size={16} aria-hidden="true" /> GitHub</a>
+            <a href="https://www.linkedin.com/in/marvin-wandati/" target="_blank" rel="noreferrer"><Linkedin size={16} aria-hidden="true" /> LinkedIn</a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="command-card"
-          initial={reduceMotion ? false : { opacity: 0, scale: .94, rotateY: 6 }}
-          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-          transition={{ delay: .12, duration: .8, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <div className="command-card rise-in" style={{ '--rise-delay': '.12s' }}>
           <div className="command-topbar">
             <span className="flex items-center gap-2"><span className="status-dot" /> prod / evidence</span>
             <span>2026.08</span>
@@ -63,19 +51,14 @@ export default function Hero() {
               <span className="radar-node node-three" />
               <div className="radar-core"><ShieldCheck size={28} /><span>verified</span></div>
             </div>
-            <img className="profile-chip" src={profileImage} alt="Marvin Wandati" />
+            <img className="profile-chip" src={profileImage} alt="Marvin Wandati" width="64" height="64" />
           </div>
 
           <div className="evidence-grid">
-            {evidence.map(([label, value], index) => (
-              <motion.div
-                key={label}
-                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: .4 + index * .08 }}
-              >
+            {evidence.map(([label, value]) => (
+              <div key={label}>
                 <span>{label}</span><strong>{value}</strong>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -87,7 +70,7 @@ export default function Hero() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="ticker" aria-hidden="true">
