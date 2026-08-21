@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion';
 import { Binary, Boxes, Eye, Fingerprint, GitPullRequest, ShieldCheck } from 'lucide-react';
+import useReveal from '../hooks/useReveal';
 
 const controls = [
   { icon: GitPullRequest, stage: '01', title: 'Change', text: 'Peer review · ASVS-informed requirements · threat-aware design' },
@@ -12,7 +12,7 @@ const controls = [
 const standards = ['NIST SSDF 1.1', 'OWASP ASVS 5.0', 'OWASP Top 10:2025', 'SLSA v1.2', 'Kubernetes Restricted PSS'];
 
 export default function DeliveryLoop() {
-  const reduceMotion = useReducedMotion();
+  const [mapRef, visible] = useReveal();
 
   return (
     <section id="approach" className="section-shell delivery-section">
@@ -22,26 +22,26 @@ export default function DeliveryLoop() {
           <p className="section-intro">A practical operating model aligned with today’s secure software standards—not a wall of scanner badges.</p>
         </div>
 
-        <div className="delivery-map">
+        <div className="delivery-map" ref={mapRef}>
           <div className="delivery-line" aria-hidden="true"><span /></div>
           {controls.map(({ icon: Icon, stage, title, text }, index) => (
-            <motion.article
+            <article
               key={title}
-              className="delivery-node"
-              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: .4 }}
-              transition={{ delay: index * .09, duration: .5 }}
+              className={`delivery-node reveal${visible ? ' is-visible' : ''}`}
+              style={{ '--reveal-delay': `${index * 0.08}s` }}
             >
-              <div><Icon size={21} /><span>{stage}</span></div>
+              <div className="delivery-marker">
+                <Icon size={21} aria-hidden="true" />
+                <span className="delivery-stage">{stage}</span>
+              </div>
               <h3>{title}</h3>
               <p>{text}</p>
-            </motion.article>
+            </article>
           ))}
         </div>
 
         <div className="standards-bar">
-          <div><ShieldCheck size={18} /><span>Practice alignment</span></div>
+          <div><ShieldCheck size={18} aria-hidden="true" /><span>Practice alignment</span></div>
           <div>{standards.map(item => <span key={item}>{item}</span>)}</div>
         </div>
       </div>

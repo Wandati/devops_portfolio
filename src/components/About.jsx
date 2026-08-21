@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDownRight, Database, Gauge, PackageCheck, TimerReset } from 'lucide-react';
+import useReveal from '../hooks/useReveal';
 
 const outcomes = [
   { value: '<10', unit: 'min', label: 'deployment time', note: 'down from 30 minutes', icon: TimerReset, accent: 'lime' },
@@ -9,7 +9,7 @@ const outcomes = [
 ];
 
 export default function About() {
-  const reduceMotion = useReducedMotion();
+  const [gridRef, visible] = useReveal();
 
   return (
     <section id="impact" className="section-shell">
@@ -19,21 +19,21 @@ export default function About() {
           <p className="section-intro">Security, speed, reliability, and cost—improved together.</p>
         </div>
 
-        <div className="outcome-grid">
+        <div className="outcome-grid" ref={gridRef}>
           {outcomes.map(({ value, unit, label, note, icon: Icon, accent }, index) => (
-            <motion.article
-              className={`outcome-card accent-${accent}`}
+            <article
+              className={`outcome-card accent-${accent} reveal${visible ? ' is-visible' : ''}`}
               key={label}
-              initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: .35 }}
-              transition={{ delay: index * .08, duration: .55 }}
+              style={{ '--reveal-delay': `${index * 0.07}s` }}
             >
-              <div className="outcome-icon"><Icon size={20} /></div>
-              <div><strong>{value}<small>{unit}</small></strong><p>{label}</p></div>
-              <span>{note}</span>
-              <ArrowDownRight className="outcome-arrow" size={24} />
-            </motion.article>
+              <div className="outcome-icon"><Icon size={20} aria-hidden="true" /></div>
+              <div className="outcome-figure">
+                <strong>{value}<small>{unit}</small></strong>
+                <p>{label}</p>
+              </div>
+              <span className="outcome-note">{note}</span>
+              <ArrowDownRight className="outcome-arrow" size={24} aria-hidden="true" />
+            </article>
           ))}
         </div>
 
