@@ -82,9 +82,11 @@ fails the build rather than warning:
 | Secrets | Gitleaks over full history |
 | Workflows | zizmor, gating at medium severity |
 
-**Every action is pinned to a full commit SHA** with a `# vN` trailing
-comment, and so are the container images the pipeline itself executes —
-including the Semgrep scanner. Dependabot rolls them forward weekly with
+**Every action is pinned to a full commit SHA** with the exact version as a
+trailing comment (`# v7.0.1`, not `# v7`), and so are the container images the
+pipeline itself executes — including the Semgrep scanner. zizmor's
+`ref-version-mismatch` audit enforces that the comment matches the tag the SHA
+actually carries. Dependabot rolls them forward weekly with
 cooldowns. Never replace a pin with a floating tag.
 
 ### Build once, promote the digest
