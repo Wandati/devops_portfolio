@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────
 # Stage 1: Builder
 # ─────────────────────────────────────────────
-FROM node:24-alpine AS builder
+FROM node:24-alpine@sha256:d32cdf619f63fe0471182d08996dd516c6275bb5fd31ae06e55a570bd9e1ad43 AS builder
 
 # Set working directory
 WORKDIR /app
@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Install dependencies with clean install (uses lockfile)
-RUN npm ci
+RUN npm ci --ignore-scripts
 
 # Copy source code
 COPY . .
@@ -21,13 +21,14 @@ RUN npm run build
 # ─────────────────────────────────────────────
 # Stage 2: Production (Nginx)
 # ─────────────────────────────────────────────
-FROM nginx:1.30-alpine AS production
+FROM nginx:1.30-alpine@sha256:97d490c12ba55b4946b01546d1c3ed324e8d41ab1c9fcb2a616aa470620e5b46 AS production
 
 # Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy hardened nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY security-headers.conf /etc/nginx/security-headers.conf
 
 # Copy built assets from builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
