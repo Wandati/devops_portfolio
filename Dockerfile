@@ -28,6 +28,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy hardened nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY security-headers.conf /etc/nginx/security-headers.conf
 
 # Copy built assets from builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
