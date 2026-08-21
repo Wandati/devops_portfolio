@@ -1,4 +1,5 @@
-import { ArrowDownRight, Download, Github, Linkedin, MapPin, ShieldCheck } from 'lucide-react';
+import { ArrowDownRight, Download, MapPin, ShieldCheck } from 'lucide-react';
+import { Github, Linkedin } from './BrandIcons';
 import profileImage from '../assets/dev.jpg';
 
 const pipeline = ['commit', 'scan', 'attest', 'promote', 'observe'];
