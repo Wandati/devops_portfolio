@@ -141,6 +141,10 @@ curl -sID - http://localhost:8080/assets/<hashed>.js | grep -i 'content-security
 
 - Content lives as data in module-scope literals at the top of each component,
   not inline in the JSX.
+- Icons come from `lucide-react`. It dropped every brand mark in v1, so the
+  GitHub and LinkedIn glyphs live in `src/components/BrandIcons.jsx` with a
+  lucide-shaped API — inlined rather than pulled from `simple-icons`, since the
+  CSP requires everything to be self-hosted anyway.
 - Tailwind utilities handle layout only; visual identity is hand-written
   semantic classes in the single global `src/index.css`. Dark mode is
   `darkMode: 'class'`.
