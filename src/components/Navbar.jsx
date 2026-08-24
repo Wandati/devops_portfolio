@@ -1,12 +1,12 @@
-import { Download, Menu, Moon, Shield, Sun, X } from 'lucide-react';
+import { Download, Menu, Moon, Sun, Terminal, X } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const links = [
-  ['impact', 'Impact'],
-  ['experience', 'Experience'],
-  ['approach', 'Approach'],
-  ['stack', 'Stack'],
-  ['contact', 'Contact'],
+  ['impact', 'impact'],
+  ['experience', 'experience'],
+  ['approach', 'approach'],
+  ['stack', 'stack'],
+  ['contact', 'contact'],
 ];
 
 const CV_PATH = '/Marvin_Wandati_CV_Prima.pdf';
@@ -68,7 +68,7 @@ export default function Navbar({ theme, toggleTheme }) {
   return (
     <nav className="site-nav" aria-label="Primary">
       <div className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between px-5 lg:px-10">
-        <a href="#home" className="brand" aria-label="Marvin Wandati, home"><span><Shield size={17} aria-hidden="true" /></span> Marvin<span>/sec</span></a>
+        <a href="#home" className="brand" aria-label="Marvin Wandati, home"><span><Terminal size={16} aria-hidden="true" /></span>wandati<span>@prod</span></a>
         <div className="hidden items-center gap-7 md:flex">
           {links.map(([id, label]) => <a key={id} href={`#${id}`} className="nav-link">{label}</a>)}
           <a className="nav-cv" href={CV_PATH} download><Download size={15} aria-hidden="true" /> CV</a>

@@ -4,9 +4,10 @@ export default function NotFound() {
   return (
     <main className="not-found">
       <ShieldX size={34} />
-      <p>HTTP 404</p>
-      <h1>Route not found.</h1>
-      <a href="/"><ArrowLeft size={17} /> Return to portfolio</a>
+      <p className="nf-cmd"><b>you@web</b>:~$ GET {window.location.pathname}</p>
+      <p className="nf-err">bash: route not found — exit 404</p>
+      <h1>nothing deployed here.</h1>
+      <a href="/"><ArrowLeft size={17} /> cd ~/portfolio</a>
     </main>
   );
 }
