@@ -39,7 +39,7 @@ function App() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
     document.querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', theme === 'dark' ? '#050908' : '#f6f8f7');
+      ?.setAttribute('content', theme === 'dark' ? '#070b0d' : '#f3f6f2');
     persistTheme(theme);
   }, [theme]);
 
@@ -48,7 +48,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f6f8f7] text-slate-950 transition-colors duration-300 dark:bg-[#050908] dark:text-white">
+    <div className="min-h-screen bg-[#f3f6f2] text-[#101b14] transition-colors duration-300 dark:bg-[#070b0d] dark:text-[#e6efe9]">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <Navbar theme={theme} toggleTheme={() => setTheme(current => current === 'dark' ? 'light' : 'dark')} />
       <main id="main-content">

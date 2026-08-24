@@ -1,32 +1,31 @@
-import { ArrowUpRight, Building2, CloudCog } from 'lucide-react';
 import useReveal from '../hooks/useReveal';
 
-const roles = [
+const jobs = [
   {
-    period: 'FEB 2026 — NOW',
-    role: 'DevSecOps / Site Reliability Engineer',
-    company: 'Expandi Limited / Expandi Agency SRL',
+    name: 'devsecops-sre',
+    company: 'expandi',
+    period: 'feb 2026 — now',
+    state: { label: '● running', tone: 'running' },
     context: 'Milan · AWS-native B2B SaaS · sole infrastructure owner',
-    icon: CloudCog,
-    highlights: [
-      'Own modular Terraform infrastructure across 3 environments and 10+ applications.',
-      'Rebuilt CI/CD with promotion gates, SAST, secrets, dependency/image scans, SBOMs, signing, and AWS OIDC.',
-      'Operate production telemetry, incident runbooks, recovery paths, and p95/p99 alerting.',
+    log: [
+      'own modular Terraform across 3 environments and 10+ applications',
+      'rebuilt CI/CD: promotion gates, SAST, secrets, dependency/image scans, SBOMs, signing, AWS OIDC',
+      'operate production telemetry, incident runbooks, recovery paths, p95/p99 alerting',
     ],
-    tags: ['AWS', 'Terraform', 'GitHub Actions', 'OpenSearch', 'Observability'],
+    flags: ['aws', 'terraform', 'github-actions', 'opensearch', 'observability'],
   },
   {
-    period: 'FEB — AUG 2025',
-    role: 'DevOps / Site Reliability Engineer',
-    company: 'Ryanada Limited',
-    context: 'Remote · 100+ servers · 2 Kubernetes clusters',
-    icon: Building2,
-    highlights: [
-      'Standardised 100+ VPS servers with reusable Ansible playbooks.',
-      'Centralised service signals with ELK, ElastAlert, Slack, and Playwright journeys.',
-      'Protected stateful Kubernetes workloads with Longhorn snapshots and Kasten K10 backups.',
+    name: 'devops-sre',
+    company: 'ryanada',
+    period: 'feb — aug 2025',
+    state: { label: '✓ completed', tone: 'done' },
+    context: 'remote · 100+ servers · 2 Kubernetes clusters',
+    log: [
+      'standardised 100+ VPS servers with reusable Ansible playbooks',
+      'centralised service signals with ELK, ElastAlert, Slack, Playwright journeys',
+      'protected stateful Kubernetes workloads: Longhorn snapshots, Kasten K10 backups',
     ],
-    tags: ['Ansible', 'Kubernetes', 'ELK', 'Grafana', 'Disaster recovery'],
+    flags: ['ansible', 'kubernetes', 'elk', 'grafana', 'disaster-recovery'],
   },
 ];
 
@@ -34,31 +33,34 @@ export default function ProfessionalFocus() {
   const [listRef, visible] = useReveal();
 
   return (
-    <section id="experience" className="section-shell section-ink">
+    <section id="experience" className="section-shell">
       <div className="mx-auto max-w-[88rem] px-5 lg:px-10">
         <div className="section-heading">
-          <div><p className="section-kicker">02 / Experience</p><h2 className="section-title">Ownership, end to end.</h2></div>
-          <p className="section-intro">From infrastructure code to first-line incident response.</p>
+          <div>
+            <p className="stage-chip">stage 2/5 · jobs</p>
+            <h2 className="section-title"><span className="prompt-mark">$</span>ownership, end to end.</h2>
+          </div>
+          <p className="section-intro">from infrastructure code to first-line incident response</p>
         </div>
 
-        <div className="experience-list" ref={listRef}>
-          {roles.map(({ period, role, company, context, icon: Icon, highlights, tags }, index) => (
+        <div className="job-list" ref={listRef}>
+          {jobs.map(({ name, company, period, state, context, log, flags }, index) => (
             <article
-              className={`experience-card reveal${visible ? ' is-visible' : ''}`}
+              className={`term-window job-panel reveal${visible ? ' is-visible' : ''}`}
               key={company}
               style={{ '--reveal-delay': `${index * 0.1}s` }}
             >
-              <div className="experience-index">0{index + 1}</div>
-              <div className="experience-role">
-                <div className="experience-icon"><Icon aria-hidden="true" /></div>
-                <p>{period}</p>
-                <h3>{role}</h3>
-                <strong>{company}</strong>
-                <span>{context}</span>
+              <div className="term-bar job-bar">
+                <span className="term-dots" aria-hidden="true"><span /><span /><span /></span>
+                <span className="job-name">▸ {name} <b>@ {company}</b></span>
+                <span className="job-when">{period} · <span className={state.tone}>{state.label}</span></span>
               </div>
-              <div className="experience-detail">
-                <ul>{highlights.map(item => <li key={item}><ArrowUpRight size={16} aria-hidden="true" />{item}</li>)}</ul>
-                <div>{tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+              <div className="term-body">
+                <p className="job-context">{context}</p>
+                <ul className="diff-list">
+                  {log.map(line => <li key={line}>{line}</li>)}
+                </ul>
+                <div className="job-flags">{flags.map(flag => <span key={flag}>{flag}</span>)}</div>
               </div>
             </article>
           ))}
